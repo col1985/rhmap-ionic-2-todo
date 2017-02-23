@@ -1,0 +1,12 @@
+{
+    "appid": "qcoa7sbioqtmiwoiarax5kys",
+    "appkey": "c9be55d0a542c28c74e914da41768fa8c7b8950a",
+    "apptitle": "RHMAP Ionic 2",
+    "connectiontag": "0.0.1",
+    "host": "https://npl.us.evals.redhatmobile.com",
+    "ios": {
+        "variantID": "46530216-a79c-4db8-844e-3f768969d007",
+        "variantSecret": "1fcfd410-9bf8-403d-8032-0a08fc97af39"
+    },
+    "projectid": "qcoa7sbi4pocnds2k6376rhi"
+}
