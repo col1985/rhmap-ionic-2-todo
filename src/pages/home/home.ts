@@ -64,7 +64,6 @@ export class HomePage {
   }
 
   deleteTask($index) {
-    console.log($index)
     // delete via service
     this.todoService
       .deleteItem($index)
@@ -78,7 +77,6 @@ export class HomePage {
 
   completeTask(task: Todo) {
     task.completed = true
-
     // update via service
     this.todoService
       .updateItem(task)
@@ -90,8 +88,9 @@ export class HomePage {
       })
   }
 
-  viewTaskDetail(task: Todo): void {
+  viewTaskDetail(index: number, task: Todo): void {
     this.navCtrl.push(TaskDetailPage, {
+      index: index,
       task: task
     });
   }

@@ -26,7 +26,6 @@ export class TodoService {
         this._fh.on('fhinit', (err, handShake) => {
             if (err) { console.error('fhinit', err) }
             this._host = handShake
-            // console.info('fhinit successful', this.host)
         })
     }
 

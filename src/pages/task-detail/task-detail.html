@@ -14,29 +14,26 @@
         <ion-card-content>
             <ion-item>
                 <ion-label>Created: </ion-label>
-                <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="created"></ion-datetime>
+                {{ created }}
             </ion-item>
             <ion-item text-wrap>
                 {{description}}
             </ion-item>
-        </ion-card-content>
-        <ion-row>
-            <ion-col>
-                <button ion-button icon-left clear (click)="completeTask()">
+
+            <ion-row>
+                <ion-col>
+                    <button ion-button icon-left clear (click)="completeTask()">
                   <ion-icon ios="ios-checkmark" md="md-checkmark"></ion-icon>
                   <div>Complete</div>
                 </button>
-            </ion-col>
-            <ion-col>
-                <button ion-button icon-left clear (click)="deleteTask()">
+                </ion-col>
+                <ion-col>
+                    <button ion-button icon-left clear (click)="deleteTask()">
                   <ion-icon ios="ios-trash-outline" md="md-trash"></ion-icon>
                   <div>Delete</div>
                 </button>
-            </ion-col>
-        </ion-row>
-
+                </ion-col>
+            </ion-row>
+        </ion-card-content>
     </ion-card>
-
-    <button ion-button full color="secondary" (click)="completeTask()">Complete</button>
-
 </ion-content>

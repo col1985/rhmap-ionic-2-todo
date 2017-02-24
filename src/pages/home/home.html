@@ -20,7 +20,7 @@
                 </button>
             </ion-item-options>
 
-            <button ion-item (click)="viewTaskDetail(item)">{{item.title}}</button>
+            <button ion-item (click)="viewTaskDetail(index, item)">{{item.title}}</button>
 
             <ion-item-options side="right">
                 <button ion-button color="danger" (click)="deleteTask($index)">
