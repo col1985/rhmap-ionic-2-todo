@@ -2,13 +2,17 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { AddTaskPage } from '../pages/add-task/add-task';
+import { TaskDetailPage } from '../pages/task-detail/task-detail';
 
 import { TodoService } from './../providers/todo.service';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    AddTaskPage,
+    TaskDetailPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -16,7 +20,9 @@ import { TodoService } from './../providers/todo.service';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    AddTaskPage,
+    TaskDetailPage
   ],
   providers: [
     { provide: ErrorHandler, useClass: IonicErrorHandler },

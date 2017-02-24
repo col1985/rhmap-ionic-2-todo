@@ -1,22 +1,35 @@
 <ion-header>
-    <ion-navbar>
+    <ion-navbar color="primary">
         <ion-title>
-            To-Do List
+            RHMAP Ionic 2 Todo
         </ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only (click)="addTask()"><ion-icon name="add-circle"></ion-icon></button>
+        </ion-buttons>
     </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-    <ion-card>
-        <ion-card-header>
-            Items
-        </ion-card-header>
+<ion-content>
+    <ion-list no-lines>
 
-        <ion-list>
-            <button ion-item>
-            <ion-icon name="cart" item-left></ion-icon>
-            Item goes here
-          </button>
-        </ion-list>
-    </ion-card>
+        <ion-item-sliding *ngFor="let item of list">
+            <ion-item-options side="left">
+                <button ion-button color="action" (click)="completeTask(item)">
+                    <ion-icon ios="ios-checkmark" md="md-checkmark"></ion-icon>
+                    <small>Done</small>
+                </button>
+            </ion-item-options>
+
+            <button ion-item (click)="viewTaskDetail(item)">{{item.title}}</button>
+
+            <ion-item-options side="right">
+                <button ion-button color="danger" (click)="deleteTask($index)">
+                    <ion-icon ios="ios-trash-outline" md="md-trash"></ion-icon>
+                    <small>Delete</small>
+                </button>
+            </ion-item-options>
+        </ion-item-sliding>
+
+        <!--<button ion-item *ngFor="let item of list" (click)="viewTaskDetail(item)">{{item.title}}</button>-->
+    </ion-list>
 </ion-content>

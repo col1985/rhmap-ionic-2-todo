@@ -1,6 +1,8 @@
 export class Todo {
-    created: Date = new Date()
-    title: string
-    id: number
-    complete: Date
+    id: number;
+    created: Date;
+    title: string;
+    description: string;
+    completed: boolean;
+    completeOn: Date;
 }
