@@ -1,34 +1,40 @@
 <ion-header>
     <ion-toolbar color="primary">
+        <ion-thumbnail item-left>
+            <img style="width: 100px; height: 40px;" src="assets/imgs/rhmobile.png">
+        </ion-thumbnail>
         <ion-title>
-            Add Task
+            Create Task
         </ion-title>
         <ion-buttons end>
-            <button ion-button icon-only (click)="close()"><ion-icon name="close"></ion-icon></button>
+            <button ion-button icon-only color="white" (click)="close()"><ion-icon name="close"></ion-icon></button>
         </ion-buttons>
     </ion-toolbar>
 </ion-header>
 
 <ion-content>
     <ion-list>
-
+        <ion-item-divider></ion-item-divider>
         <ion-item>
-            <ion-label floating>Title</ion-label>
-            <ion-input type="text" [(ngModel)]="title"></ion-input>
+            <ion-label stacked>Title:</ion-label>
+            <ion-input type="text" placeholder="Add Task title" [(ngModel)]="title"></ion-input>
         </ion-item>
-
+        <ion-item-divider></ion-item-divider>
         <ion-item>
-            <ion-label floating>Description</ion-label>
-            <ion-input type="text" [(ngModel)]="description"></ion-input>
+            <ion-label stacked>Description:</ion-label>
+            <ion-textarea rows="6" placeholder="Add further detail" [(ngModel)]="description"></ion-textarea>
         </ion-item>
-        <br>
+        <ion-item-divider></ion-item-divider>
         <ion-item>
-            <ion-label>Complete On</ion-label>
-            <ion-datetime displayFormat="MMM DD, YYYY HH:mm" pickerFormat="MMM DD, YYYY HH:mm" [(ngModel)]="completeOn"></ion-datetime>
+            <ion-label stacked>Complete On:</ion-label>
+            <ion-datetime displayFormat="MMM DD, YYYY HH:mm" min="2017" pickerFormat="MMM DD, YYYY HH:mm" [(ngModel)]="completeOn"></ion-datetime>
         </ion-item>
-
+        <ion-item-divider></ion-item-divider>
+        <ion-item>
+            <ion-label stacked>Set Reminder:</ion-label>
+            <ion-checkbox [(ngModel)]="setReminder"></ion-checkbox>
+        </ion-item>
+        <ion-item-divider></ion-item-divider>
+        <button full ion-button color="action" (click)="saveTask()">Save</button>
     </ion-list>
-
-    <button full ion-button color="secondary" (click)="saveTask()">Save</button>
-
 </ion-content>

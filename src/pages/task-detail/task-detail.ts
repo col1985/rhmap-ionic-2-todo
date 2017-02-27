@@ -11,13 +11,14 @@ import { NavController, NavParams } from 'ionic-angular';
 
 export class TaskDetailPage {
 
-  id: number;
-  index: number;
-  title: string;
-  description: string;
-  completed: boolean;
-  created: Date;
-  completeOn: Date;
+  private id: number;
+  private index: number;
+  private title: string;
+  private description: string;
+  private completed: boolean;
+  private setReminder: boolean;
+  private created: Date;
+  private completeOn: Date;
 
   constructor(
     private navCtrl: NavController,
@@ -26,7 +27,15 @@ export class TaskDetailPage {
   ) { }
 
   ionViewDidLoad() {
-    console.dir('params: ', this.navParams)
+    // load task details
+    this._getViewData()
+  }
+
+  ionViewWillLeave() {
+    console.log("Task detail will leave");
+  }
+
+  private _getViewData(): void {
     this.index = this.navParams.get('index').index;
     this.id = this.navParams.get('task').id;
     this.title = this.navParams.get('task').title;
@@ -34,38 +43,30 @@ export class TaskDetailPage {
     this.description = this.navParams.get('task').description;
     this.completed = this.navParams.get('task').completed;
     this.completeOn = this.navParams.get('task').completeOn;
+    this.setReminder = this.navParams.get('task').setReminder;
   }
 
-  ionViewWillLeave() {
-    console.log("Task detail will leave");
-  }
-
-  completeTask() {
+  completeTask(): void {
     let updatedTask: Todo = {
       id: this.id,
       title: this.title,
       created: this.created,
       description: this.description,
       completed: true,
+      setReminder: this.setReminder,
       completeOn: this.completeOn
     }
 
     this.todoService
       .updateItem(updatedTask)
-      .then((success) => {
-        console.info('Updated Item', success)
-        this.navCtrl.pop()
-      })
+      .then((success) => this.navCtrl.pop())
       .catch((err) => console.error(err))
   }
 
-  deleteTask() {
+  deleteTask(): void {
     this.todoService
       .deleteItem(this.index)
-      .then((success) => {
-        console.info('delete Item', success)
-        this.navCtrl.pop()
-      })
+      .then((success) => this.navCtrl.pop())
       .catch((err) => console.error(err))
   }
 }

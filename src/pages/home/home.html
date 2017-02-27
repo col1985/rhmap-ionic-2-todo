@@ -1,7 +1,10 @@
 <ion-header>
     <ion-navbar color="primary">
+        <ion-thumbnail item-left>
+            <img style="width: 100px; height: 40px;" src="assets/imgs/rhmobile.png">
+        </ion-thumbnail>
         <ion-title>
-            RHMAP Ionic 2 Todo
+            Ionic 2 Todo
         </ion-title>
         <ion-buttons end>
             <button ion-button icon-only (click)="addTask()"><ion-icon name="add-circle"></ion-icon></button>
@@ -12,24 +15,24 @@
 <ion-content>
     <ion-list no-lines>
 
-        <ion-item-sliding *ngFor="let item of list">
+        <!--<div *ngIf="list.length === 0">No tasks to be completed!!</div>-->
+
+        <ion-item-sliding *ngFor="let task of list; let i=index">
             <ion-item-options side="left">
-                <button ion-button color="action" (click)="completeTask(item)">
+                <button ion-button color="action" (click)="completeTask(task)">
                     <ion-icon ios="ios-checkmark" md="md-checkmark"></ion-icon>
                     <small>Done</small>
                 </button>
             </ion-item-options>
 
-            <button ion-item (click)="viewTaskDetail(index, item)">{{item.title}}</button>
+            <button ion-item (click)="viewTaskDetail(i, task)" [ngClass]="{ 'completed': task.completed }">{{task.title}}</button>
 
             <ion-item-options side="right">
-                <button ion-button color="danger" (click)="deleteTask($index)">
+                <button ion-button color="danger" (click)="deleteTask(i)">
                     <ion-icon ios="ios-trash-outline" md="md-trash"></ion-icon>
                     <small>Delete</small>
                 </button>
             </ion-item-options>
         </ion-item-sliding>
-
-        <!--<button ion-item *ngFor="let item of list" (click)="viewTaskDetail(item)">{{item.title}}</button>-->
     </ion-list>
 </ion-content>

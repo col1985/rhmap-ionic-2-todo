@@ -10,14 +10,15 @@ import { Todo } from '../../models/Todo';
 
 export class AddTaskPage {
 
-  title: string;
-  description: string;
-  completeOn: Date;
+  private title: string;
+  private description: string;
+  private completeOn: Date;
+  private setReminder: boolean;
 
   constructor(
-    public navCtrl: NavController,
-    public view: ViewController,
-    public navParams: NavParams) { }
+    private navCtrl: NavController,
+    private view: ViewController,
+    private navParams: NavParams) { }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddTaskPage');
@@ -25,12 +26,13 @@ export class AddTaskPage {
 
   saveTask() {
     let newTask: Todo = {
-      id: Math.random(),
+      id: Math.floor(Math.random()),
       title: this.title,
       created: new Date(),
       description: this.description,
-      completeOn: this.completeOn,
-      completed: false
+      completeOn: new Date(this.completeOn),
+      completed: false,
+      setReminder: this.setReminder
     };
 
     this.view.dismiss(newTask);

@@ -1,34 +1,47 @@
 <ion-header>
     <ion-navbar color="primary">
-        <ion-title>
+
+        <!--<ion-title item-left>
             {{title}}
-        </ion-title>
+        </ion-title>-->
+        <ion-thumbnail item-right>
+            <img style="width: 100px; height: 40px;" src="assets/imgs/rhmobile.png">
+        </ion-thumbnail>
     </ion-navbar>
 </ion-header>
 
 <ion-content>
     <ion-card>
         <ion-card-header>
-            {{title}}
+            <h2>{{ title }}</h2>
         </ion-card-header>
         <ion-card-content>
             <ion-item>
-                <ion-label>Created: </ion-label>
-                {{ created }}
+                <!--<ion-label>Created: </ion-label>-->
+                <p>Created On:</p> <br>
+                <div>{{ created | date: 'medium' }}</div>
             </ion-item>
+
             <ion-item text-wrap>
-                {{description}}
+                <p>Details:</p> <br>
+                <div>{{ description }}</div>
             </ion-item>
 
             <ion-row>
-                <ion-col>
-                    <button ion-button icon-left clear (click)="completeTask()">
+                <ion-col start>
+                    <button color="action" ion-button icon-left clear (click)="completeTask()">
                   <ion-icon ios="ios-checkmark" md="md-checkmark"></ion-icon>
                   <div>Complete</div>
                 </button>
                 </ion-col>
                 <ion-col>
-                    <button ion-button icon-left clear (click)="deleteTask()">
+                    <button color="danger" ion-button icon-left clear (click)="deleteTask()">
+                  <ion-icon ios="ios-trash-outline" md="md-trash"></ion-icon>
+                  <div>Reminder</div>
+                </button>
+                </ion-col>
+                <ion-col end>
+                    <button color="danger" ion-button icon-left clear (click)="deleteTask()">
                   <ion-icon ios="ios-trash-outline" md="md-trash"></ion-icon>
                   <div>Delete</div>
                 </button>

@@ -2,13 +2,11 @@ import { Component } from '@angular/core';
 import { NavController, ModalController } from 'ionic-angular';
 
 import { TodoService } from './../../providers/todo.service';
-// import { TODOS } from './../../models/mock-data';
 import { Todo } from './../../models/Todo';
 
 import { AddTaskPage } from '../add-task/add-task';
 import { TaskDetailPage } from '../task-detail/task-detail';
 
-import 'rxjs/add/operator/map';
 
 
 @Component({
@@ -21,16 +19,10 @@ export class HomePage {
   public list: Todo[];
 
   constructor(
-    public navCtrl: NavController,
-    public modalCtrl: ModalController,
+    private navCtrl: NavController,
+    private modalCtrl: ModalController,
     private todoService: TodoService
   ) { }
-
-  test(): void { }
-
-  private _getTodos() {
-    this.todoService.getList().then(items => this.list = items);
-  }
 
   ionViewDidLoad() {
     this._getTodos();
@@ -40,7 +32,11 @@ export class HomePage {
     console.log("Leaving Home");
   }
 
-  addTask() {
+  private _getTodos() {
+    this.todoService.getList().then(items => this.list = items);
+  }
+
+  addTask(): void {
     let addModal = this.modalCtrl.create(AddTaskPage);
 
     addModal.onDidDismiss((task) => {
@@ -48,11 +44,10 @@ export class HomePage {
         this.saveTask(task);
       }
     });
-
     addModal.present();
   }
 
-  saveTask(task: Todo) {
+  saveTask(task: Todo): void {
     this.todoService
       .addItem(task)
       .then((success) => {
@@ -63,7 +58,7 @@ export class HomePage {
       })
   }
 
-  deleteTask($index) {
+  deleteTask($index): void {
     // delete via service
     this.todoService
       .deleteItem($index)
@@ -75,7 +70,7 @@ export class HomePage {
       })
   }
 
-  completeTask(task: Todo) {
+  completeTask(task: Todo): void {
     task.completed = true
     // update via service
     this.todoService
@@ -88,10 +83,11 @@ export class HomePage {
       })
   }
 
-  viewTaskDetail(index: number, task: Todo): void {
-    this.navCtrl.push(TaskDetailPage, {
-      index: index,
+  viewTaskDetail($index: number, task: Todo): void {
+    let params = {
+      index: $index,
       task: task
-    });
+    };
+    this.navCtrl.push(TaskDetailPage, params);
   }
 }
